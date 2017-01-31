@@ -13,9 +13,9 @@ app.get('/', function (req, res){
 
 io.on('connection', function (socket) {
 
-  var interval = setInterval(function () {
-    socket.emit('liveStream', { res: 'Sample Response</br>' });
-  }, 1000);
+  // var interval = setInterval(function () {
+  //   socket.emit('liveStream', { res: 'Sample Response</br>' });
+  // }, 1000);
 
   socket.on('message', function (channel, message) {
     console.log('socket.on("message"): ' + channel + ':', message);
@@ -25,9 +25,9 @@ io.on('connection', function (socket) {
     console.log('liveStream: ' + message)
   })
 
-  socket.on('disconnect', function () {
-    clearInterval(interval);
-  });
+  // socket.on('disconnect', function () {
+  //   clearInterval(interval);
+  // });
 });
 
 http.listen(process.env.PORT || 3000, function(){

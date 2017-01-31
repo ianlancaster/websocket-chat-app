@@ -1,0 +1,47 @@
+body {
+  min-height: 80vh;
+  max-width: 600px;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+form {
+  background-color: #EEEEEE;
+  padding: 20px 40px 20px 40px;
+}
+
+label {
+  display: block;
+  padding: 10px 0 5px 0;
+}
+
+input {
+  width: 100%;
+  font-size: 18px;
+  line-height: 36px;
+  padding: 0 10px 0 10px;
+  background-color: #DDDDDD;
+  border: none;
+}
+
+button {
+  font-size: 18px;
+  padding: 10px 20px 10px 20px;
+  display: block;
+  margin: 30px auto 10px auto;
+  background-color: #31C6E8;
+  border: none;
+  color: white;
+}
+
+button:hover {
+  background-color: #29FFED;
+}
+
+#server-message {
+  background-color: #FFF5D5;
+}

@@ -17,12 +17,15 @@ io.on('connection', function (socket) {
   //   socket.emit('liveStream', { res: 'Sample Response</br>' });
   // }, 1000);
 
-  socket.on('message', function (channel, message) {
-    console.log('socket.on("message"): ' + channel + ':', message);
-  });
+  socket.emit('connected', { res: 'You have connected'})
+
+  // socket.on('message', function (channel, message) {
+  //   console.log('socket.on("message"): ' + channel + ':', message);
+  // });
 
   socket.on('liveStream', function(message) {
     console.log('liveStream: ' + message)
+    socket.emit('liveStream', message)
   })
 
   // socket.on('disconnect', function () {

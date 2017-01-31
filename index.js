@@ -11,26 +11,20 @@ app.get('/', function (req, res){
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
+let userCount = 0
+
 io.on('connection', function (socket) {
-
-  // var interval = setInterval(function () {
-  //   socket.emit('liveStream', { res: 'Sample Response</br>' });
-  // }, 1000);
-
-  socket.emit('connected', { res: 'You have connected'})
-
-  // socket.on('message', function (channel, message) {
-  //   console.log('socket.on("message"): ' + channel + ':', message);
-  // });
+  ++userCount
+  io.sockets.emit('connected', userCount)
 
   socket.on('liveStream', function(message) {
-    console.log('liveStream: ' + message)
-    socket.emit('liveStream', message)
+    io.sockets.emit('liveStream', message)
   })
 
-  // socket.on('disconnect', function () {
-  //   clearInterval(interval);
-  // });
+  socket.on('disconnect', function () {
+    --userCount
+    socket.broadcast.emit('connected', userCount)
+  });
 });
 
 http.listen(process.env.PORT || 3000, function(){

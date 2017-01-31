@@ -1,13 +1,16 @@
 var socket = io();
 
-socket.on('connected', function(message) {
-  $('#server-message').html(message.res)
+socket.on('connected', function(userCount) {
+  const display = userCount === 1
+    ? 'You are connected'
+    : `You and ${userCount - 1} other users are connected`
+
+  $('#server-message').html(display)
 })
 
 socket.on('liveStream', function(message) {
-  console.log(message)
   $('#message-container').append(`
-    <section class='user-message'>
+    <section class='message'>
       <span class='user-name'>${message.name}: </span>
       <p class='user-message'>${message.message}</p>
     </section>

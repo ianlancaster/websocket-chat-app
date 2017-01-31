@@ -1,12 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Heebo:300,400,500,700|Slabo+27px');
+
 body {
   min-height: 80vh;
   max-width: 600px;
   margin: auto;
-  font-family: sans-serif;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 300;
 }
 
 h1 {
   text-align: center;
+  font-family: Slabo27px-Regular, serif;
+  color: #555555;
 }
 
 form {

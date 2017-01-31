@@ -11,7 +11,7 @@ const messageTemplate = (message) => (`
 socket.on('connected', function(userCount) {
   const display = userCount === 1
     ? 'You are connected'
-    : `You and ${userCount - 1} other users are connected`
+    : `You and ${userCount - 1} other user${ userCount === 2 ? '' : 's'} are connected`
 
   $('#server-message').html(display)
 })

@@ -1,4 +1,12 @@
-var socket = io();
+const socket = io()
+const $messagesContainer = $('#message-container')
+
+const messageTemplate = (message) => (`
+  <section class='message'>
+    <span class='user-name'>${message.name}: </span>
+    <p class='user-message'>${message.message}</p>
+  </section>
+`)
 
 socket.on('connected', function(userCount) {
   const display = userCount === 1
@@ -10,22 +18,12 @@ socket.on('connected', function(userCount) {
 
 socket.on('messageArchive', function(messageArchive) {
   messageArchive.forEach(message => {
-    $('#message-container').append(`
-      <section class='message'>
-        <span class='user-name'>${message.name}: </span>
-        <p class='user-message'>${message.message}</p>
-      </section>
-    `)
+    $messagesContainer.append(messageTemplate(message))
   })
 })
 
 socket.on('liveStream', function(message) {
-  $('#message-container').append(`
-    <section class='message'>
-      <span class='user-name'>${message.name}: </span>
-      <p class='user-message'>${message.message}</p>
-    </section>
-  `)
+  $messagesContainer.append(messageTemplate(message))
 })
 
 $('form').on('submit', function(e) {
@@ -38,4 +36,4 @@ $('form').on('submit', function(e) {
   e.currentTarget[1].value = ''
 
   return false
-});
+})

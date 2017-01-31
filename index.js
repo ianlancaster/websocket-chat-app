@@ -12,12 +12,15 @@ app.get('/', function (req, res){
 });
 
 let userCount = 0
+let messageArchive = []
 
 io.on('connection', function (socket) {
   ++userCount
   io.sockets.emit('connected', userCount)
+  socket.emit('messageArchive', messageArchive)
 
   socket.on('liveStream', function(message) {
+    messageArchive.push(message)
     io.sockets.emit('liveStream', message)
   })
 

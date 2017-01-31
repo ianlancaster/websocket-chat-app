@@ -8,6 +8,17 @@ socket.on('connected', function(userCount) {
   $('#server-message').html(display)
 })
 
+socket.on('messageArchive', function(messageArchive) {
+  messageArchive.forEach(message => {
+    $('#message-container').append(`
+      <section class='message'>
+        <span class='user-name'>${message.name}: </span>
+        <p class='user-message'>${message.message}</p>
+      </section>
+    `)
+  })
+})
+
 socket.on('liveStream', function(message) {
   $('#message-container').append(`
     <section class='message'>
